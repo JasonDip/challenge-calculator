@@ -25,6 +25,7 @@ using System.Threading.Tasks;
 
     Stretch Goals:
     1. Display the formula used to calculate the result e.g. 2,4,rrrr,1001,6 will return 2+4+0+0+6 = 12
+    2. Allow the application to process entered entries until Ctrl+C is used
  */
 
 namespace challenge_calculator
@@ -35,12 +36,28 @@ namespace challenge_calculator
         {
             Console.WriteLine("Enter a formatted string of numbers to add.");
             Console.WriteLine(" * Comma or new-line delimited.");
-            Console.WriteLine(" * To use multiple custom delimiters, use this format: //[{delimiter1}][{delimiter2}]...\n{numbers}.");
-            Console.Write("> ");
-            string input = Console.ReadLine();
+            Console.WriteLine(" * To use multiple custom delimiters, use this format: //[{delimiter1}][{delimiter2}]...\\n{numbers}.");
+            Console.WriteLine(" * Continuously calculating entries. Exit using Ctrl+C.");
 
-            List<double> numbers = InputParser.ParseStringToList(input);
-            Console.WriteLine(Calculator.GetFormula(numbers) + " = " + Calculator.Add(numbers));
+            double runningTotal = 0;
+            int loopCount = 0;
+            while (true)
+            {
+                Console.Write("> ");
+                string input = Console.ReadLine();
+                List<double> numbers = InputParser.ParseStringToList(input);
+
+                // add previous loop's answer - comment this part out to stop prefixing previous answer
+                if (loopCount > 0)
+                {
+                    numbers.Insert(0, runningTotal);
+                }
+                loopCount++;
+
+                // calculate this loop's answer
+                runningTotal = Calculator.Add(numbers);
+                Console.WriteLine(Calculator.GetFormula(numbers) + " = " + runningTotal);
+            }
         }
     }
 }
