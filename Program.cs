@@ -5,11 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 
 /*
+    Requirements:
     1. Support a maximum of 2 numbers using a comma delimiter
         examples: 20 will return 20; 1,5000 will return 5001
         invalid/missing numbers should be converted to 0 e.g. "" will return 0; 5,tytyt will return 5
     2. Support an unlimited number of numbers e.g. 1,2,3,4,5,6,7,8,9,10,11,12 will return 78
     3. Support a newline character as an alternative delimiter e.g. 1\n2,3 will return 6
+    4. Deny negative numbers. An exception should be thrown that includes all of the negative numbers provided
  */
 
 namespace challenge_calculator

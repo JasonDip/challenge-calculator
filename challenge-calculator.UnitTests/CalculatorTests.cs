@@ -46,5 +46,14 @@ namespace challenge_calculator.UnitTests
 
             Assert.AreEqual(78, result);
         }
+
+        [TestMethod]
+        [ExpectedException(typeof(Exception))]
+        public void Add_NegativeNumbers_CreatesException()
+        {
+            List<int> numbers = new List<int>() { 1, 2, 3, -4, -5 };
+
+            int result = Calculator.Add(numbers);
+        }
     }
 }
