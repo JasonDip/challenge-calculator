@@ -83,5 +83,16 @@ namespace challenge_calculator.UnitTests
 
             CollectionAssert.AreEqual(expectedNumbers, numbers);
         }
+
+        [TestMethod]
+        public void ParseStringToList_CustomDelimiterAnyLength_ReturnsEqualList()
+        {
+            List<double> numbers = new List<double>();
+            List<double> expectedNumbers = new List<double>() { 11, 22, 33 };
+
+            numbers = InputParser.ParseStringToList("//[***]\\n11***22***33");
+
+            CollectionAssert.AreEqual(expectedNumbers, numbers);
+        }
     }
 }

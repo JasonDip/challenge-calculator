@@ -16,6 +16,9 @@ using System.Threading.Tasks;
     6. Support 1 custom single character length delimiter
         use the format: //{delimiter}\n{numbers} e.g. //;\n2;5 will return 7
         all previous formats should also be supported
+    7. Support 1 custom delimiter of any length
+        use the format: //[{delimiter}]\n{numbers} e.g. //[***]\n11***22***33 will return 66
+        all previous formats should also be supported
  */
 
 namespace challenge_calculator
