@@ -20,11 +20,11 @@ namespace challenge_calculator.UnitTests
         [TestMethod]
         public void Add_2Numbers_ReturnsCorrectResult()
         {
-            List<int> numbers = new List<int>() { 1, 5000 };
+            List<int> numbers = new List<int>() { 1, 5 };
 
             int result = Calculator.Add(numbers);
 
-            Assert.AreEqual(5001, result);
+            Assert.AreEqual(6, result);
         }
 
         [TestMethod]
@@ -51,9 +51,20 @@ namespace challenge_calculator.UnitTests
         [ExpectedException(typeof(Exception))]
         public void Add_NegativeNumbers_CreatesException()
         {
+            Calculator.allowNegativeNumbers = false;
             List<int> numbers = new List<int>() { 1, 2, 3, -4, -5 };
 
             int result = Calculator.Add(numbers);
+        }
+
+        [TestMethod]
+        public void Add_HigherThanUpperLimitNumber_NumberIsIgnored()
+        {
+            List<int> numbers = new List<int>() { 2, Calculator.upperBound+1, 6 };
+
+            int result = Calculator.Add(numbers);
+
+            Assert.AreEqual(8, result);
         }
     }
 }

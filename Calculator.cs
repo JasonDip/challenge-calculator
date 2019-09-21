@@ -8,19 +8,22 @@ namespace challenge_calculator
 {
     public class Calculator
     {
-        public static bool bAllowNegativeNumbers = false;
+        public static bool allowNegativeNumbers = false;
+        public static int upperBound = 1000;
 
         static public int Add(List<int> numbers)
         {
             int answer = 0;
-            //List<int> negativeNumbers = new List<int>();
             string negativeNumbers = "";
 
             foreach (var number in numbers)
             {
-                if (( ! bAllowNegativeNumbers) && number < 0)
+                if (number > upperBound)
                 {
-                    //negativeNumbers.Add(number);
+
+                }
+                else if (( ! allowNegativeNumbers) && number < 0)
+                {
                     negativeNumbers += number.ToString() + " ";
                 }
                 else
