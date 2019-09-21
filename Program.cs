@@ -22,6 +22,9 @@ using System.Threading.Tasks;
     8. Support multiple delimiters of any length
         use the format: //[{delimiter1}][{delimiter2}]...\n{numbers} e.g. //[*][!!][r9r]\n11r9r22*33!!44 will return 110
         all previous formats should also be supported
+
+    Stretch Goals:
+    1. Display the formula used to calculate the result e.g. 2,4,rrrr,1001,6 will return 2+4+0+0+6 = 12
  */
 
 namespace challenge_calculator
@@ -37,7 +40,7 @@ namespace challenge_calculator
             string input = Console.ReadLine();
 
             List<double> numbers = InputParser.ParseStringToList(input);
-            Console.WriteLine(Calculator.Add(numbers));
+            Console.WriteLine(Calculator.GetFormula(numbers) + " = " + Calculator.Add(numbers));
         }
     }
 }

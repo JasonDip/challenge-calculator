@@ -66,5 +66,25 @@ namespace challenge_calculator.UnitTests
 
             Assert.AreEqual(8, result);
         }
+
+        [TestMethod]
+        public void GetFormula_AllNumbers_ReturnsFormula()
+        {
+            List<double> numbers = new List<double>() { 1, 2, 3 };
+
+            string formula = Calculator.GetFormula(numbers);
+
+            Assert.AreEqual("1+2+3", formula);
+        }
+
+        [TestMethod]
+        public void GetFormula_NumbersAndOverBounds_ReturnsFormulaWithInvalidInputsAs0()
+        {
+            List<double> numbers = new List<double>() { 2, 4, 0, Calculator.upperBound + 1, 6 };
+
+            string formula = Calculator.GetFormula(numbers);
+
+            Assert.AreEqual("2+4+0+0+6", formula);
+        }
     }
 }
