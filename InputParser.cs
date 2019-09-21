@@ -11,7 +11,8 @@ namespace challenge_calculator
         static public List<int> parseStringToList(string input)
         {
             List<int> numbers = new List<int>();
-            string[] splitInput = input.Split(',');
+            string[] delimiter = { ",", "\\n", "\n" }; // did both '\n' (0xA) and "\n" as intructions were ambiguous
+            string[] splitInput = input.Split(delimiter, StringSplitOptions.None);
 
             foreach (var item in splitInput)
             {
