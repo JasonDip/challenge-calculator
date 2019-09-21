@@ -9,10 +9,11 @@ namespace challenge_calculator
 {
     public class InputParser
     {
+        static public string[] defaultDelimiters = { ",", "\\n", "\n" }; // did both '\n' (0xA) and "\n" as intructions were ambiguous
+
         static public List<double> ParseStringToList(string input)
         {
             // extract delimiter-header from the input string
-            string[] defaultDelimiters = { ",", "\\n", "\n" }; // did both '\n' (0xA) and "\n" as intructions were ambiguous
             string[] customDelimiters = FindDelimiters(ref input);
             List<string> addedList = new List<string>(defaultDelimiters.Concat<string>(customDelimiters));
             string[] delimiters = addedList.ToArray();

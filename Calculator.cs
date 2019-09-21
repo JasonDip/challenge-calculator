@@ -9,7 +9,7 @@ namespace challenge_calculator
     public class Calculator
     {
         public static bool allowNegativeNumbers = false;
-        public static int upperBound = 1000;
+        public static double upperBound = 1000;
 
         static private bool IsGreaterThanUpperBound(double number)
         {

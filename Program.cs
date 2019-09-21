@@ -26,6 +26,10 @@ using System.Threading.Tasks;
     Stretch Goals:
     1. Display the formula used to calculate the result e.g. 2,4,rrrr,1001,6 will return 2+4+0+0+6 = 12
     2. Allow the application to process entered entries until Ctrl+C is used
+    3. Allow the acceptance of arguments to define...
+        alternate delimiter in step #3
+        toggle whether to deny negative numbers in step #4
+        upper bound in step #5
  */
 
 namespace challenge_calculator
@@ -34,9 +38,15 @@ namespace challenge_calculator
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("Supported command line arguments:");
+            Console.WriteLine(" * Set a delimiter: -d \";\"");
+            Console.WriteLine(" * Allow negative numbers: -n");
+            Console.WriteLine(" * Set number upper limit: -u \"2000\"\r\n");
+            CheckArgs(args);
+
             Console.WriteLine("Enter a formatted string of numbers to add.");
             Console.WriteLine(" * Comma or new-line delimited.");
-            Console.WriteLine(" * To use multiple custom delimiters, use this format: //[{delimiter1}][{delimiter2}]...\\n{numbers}.");
+            Console.WriteLine(" * To use multiple custom delimiters, use format: //[{delimiter1}][{delimiter2}]...\\n{numbers}.");
             Console.WriteLine(" * Continuously calculating entries. Exit using Ctrl+C.");
 
             double runningTotal = 0;
@@ -57,6 +67,25 @@ namespace challenge_calculator
                 // calculate this loop's answer
                 runningTotal = Calculator.Add(numbers);
                 Console.WriteLine(Calculator.GetFormula(numbers) + " = " + runningTotal);
+            }
+        }
+
+        static void CheckArgs(string[] args)
+        {
+            for (int x = 0; x < args.Length; x++)
+            {
+                switch (args[x])
+                {
+                    case "-d":
+                        InputParser.defaultDelimiters = new string[] { ",", args[++x] };
+                        break;
+                    case "-n":
+                        Calculator.allowNegativeNumbers = true;
+                        break;
+                    case "-u":
+                        Calculator.upperBound = Convert.ToDouble(args[++x]);
+                        break;
+                }
             }
         }
     }
