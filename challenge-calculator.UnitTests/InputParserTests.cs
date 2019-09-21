@@ -8,67 +8,78 @@ namespace challenge_calculator.UnitTests
     public class InputParserTests
     {
         [TestMethod]
-        public void parseStringToList_TwoNumbers_ReturnsEqualList()
+        public void ParseStringToList_TwoNumbers_ReturnsEqualList()
         {
-            List<int> numbers = new List<int>();
-            List<int> expectedNumbers = new List<int>() { 5000, 1 };
+            List<double> numbers = new List<double>();
+            List<double> expectedNumbers = new List<double>() { 5000, 1 };
 
-            numbers = InputParser.parseStringToList("5000,1");
+            numbers = InputParser.ParseStringToList("5000,1");
 
             CollectionAssert.AreEqual(expectedNumbers, numbers);
         }
 
         [TestMethod]
-        public void parseStringToList_NumberAndLetters_LettersReturnedAs0()
+        public void ParseStringToList_NumberAndLetters_LettersReturnedAs0()
         {
-            List<int> numbers = new List<int>();
-            List<int> expectedNumbers = new List<int>() { 5, 0 };
+            List<double> numbers = new List<double>();
+            List<double> expectedNumbers = new List<double>() { 5, 0 };
 
-            numbers = InputParser.parseStringToList("5, tyty");
+            numbers = InputParser.ParseStringToList("5, tyty");
 
             CollectionAssert.AreEqual(expectedNumbers, numbers);
         }
 
         [TestMethod]
-        public void parseStringToList_BlankNumber_BlanksAre0()
+        public void ParseStringToList_BlankNumber_BlanksAre0()
         {
-            List<int> numbers = new List<int>();
-            List<int> expectedNumbers = new List<int>() { 5, 0 };
+            List<double> numbers = new List<double>();
+            List<double> expectedNumbers = new List<double>() { 5, 0 };
 
-            numbers = InputParser.parseStringToList("5, ");
+            numbers = InputParser.ParseStringToList("5, ");
 
             CollectionAssert.AreEqual(expectedNumbers, numbers);
         }
 
         [TestMethod]
-        public void parseStringToList_NewLineDelimiter_ReturnsEqualList()
+        public void ParseStringToList_NewLineDelimiter_ReturnsEqualList()
         {
-            List<int> numbers = new List<int>();
-            List<int> expectedNumbers = new List<int>() { 1, 2, 3 };
+            List<double> numbers = new List<double>();
+            List<double> expectedNumbers = new List<double>() { 1, 2, 3 };
 
-            numbers = InputParser.parseStringToList("1\n2\n3");
+            numbers = InputParser.ParseStringToList("1\n2\n3");
 
             CollectionAssert.AreEqual(expectedNumbers, numbers);
         }
 
         [TestMethod]
-        public void parseStringToList_SlashNDelimiter_ReturnsEqualList()
+        public void ParseStringToList_SlashNDelimiter_ReturnsEqualList()
         {
-            List<int> numbers = new List<int>();
-            List<int> expectedNumbers = new List<int>() { 1, 2, 3 };
+            List<double> numbers = new List<double>();
+            List<double> expectedNumbers = new List<double>() { 1, 2, 3 };
 
-            numbers = InputParser.parseStringToList("1\\n2\\n3");
+            numbers = InputParser.ParseStringToList("1\\n2\\n3");
 
             CollectionAssert.AreEqual(expectedNumbers, numbers);
         }
 
         [TestMethod]
-        public void parseStringToList_NewLineAndCommaMixedDelimiter_ReturnsEqualList()
+        public void ParseStringToList_NewLineAndCommaMixedDelimiter_ReturnsEqualList()
         {
-            List<int> numbers = new List<int>();
-            List<int> expectedNumbers = new List<int>() { 1, 2, 3 };
+            List<double> numbers = new List<double>();
+            List<double> expectedNumbers = new List<double>() { 1, 2, 3 };
 
-            numbers = InputParser.parseStringToList("1\\n2,3");
+            numbers = InputParser.ParseStringToList("1\\n2,3");
+
+            CollectionAssert.AreEqual(expectedNumbers, numbers);
+        }
+
+        [TestMethod]
+        public void ParseStringToList_CustomSingleCharacterDelimiter_ReturnsEqualList()
+        {
+            List<double> numbers = new List<double>();
+            List<double> expectedNumbers = new List<double>() { 2, 5 };
+
+            numbers = InputParser.ParseStringToList("//;\\n2;5");
 
             CollectionAssert.AreEqual(expectedNumbers, numbers);
         }

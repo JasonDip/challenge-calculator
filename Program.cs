@@ -13,6 +13,9 @@ using System.Threading.Tasks;
     3. Support a newline character as an alternative delimiter e.g. 1\n2,3 will return 6
     4. Deny negative numbers. An exception should be thrown that includes all of the negative numbers provided
     5. Ignore any number greater than 1000 e.g. 2,1001,6 will return 8
+    6. Support 1 custom single character length delimiter
+        use the format: //{delimiter}\n{numbers} e.g. //;\n2;5 will return 7
+        all previous formats should also be supported
  */
 
 namespace challenge_calculator
@@ -23,10 +26,11 @@ namespace challenge_calculator
         {
             Console.WriteLine("Enter a formatted string of numbers to add.");
             Console.WriteLine(" * Comma or new-line delimited.");
+            Console.WriteLine(" * To use a custom delimiter, use this format: //{delimiter}\\n{numbers}.");
             Console.Write("> ");
             string input = Console.ReadLine();
 
-            List<int> numbers = InputParser.parseStringToList(input);
+            List<double> numbers = InputParser.ParseStringToList(input);
             Console.WriteLine(Calculator.Add(numbers));
         }
     }

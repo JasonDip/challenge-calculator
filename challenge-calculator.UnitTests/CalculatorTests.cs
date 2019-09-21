@@ -10,9 +10,9 @@ namespace challenge_calculator.UnitTests
         [TestMethod]
         public void Add_1Number_ReturnsCorrectResult()
         {
-            List<int> numbers = new List<int>() { 20 };
+            List<double> numbers = new List<double>() { 20 };
 
-            int result = Calculator.Add(numbers);
+            double result = Calculator.Add(numbers);
 
             Assert.AreEqual(20, result);
         }
@@ -20,9 +20,9 @@ namespace challenge_calculator.UnitTests
         [TestMethod]
         public void Add_2Numbers_ReturnsCorrectResult()
         {
-            List<int> numbers = new List<int>() { 1, 5 };
+            List<double> numbers = new List<double>() { 1, 5 };
 
-            int result = Calculator.Add(numbers);
+            double result = Calculator.Add(numbers);
 
             Assert.AreEqual(6, result);
         }
@@ -30,9 +30,9 @@ namespace challenge_calculator.UnitTests
         [TestMethod]
         public void Add_3Numbers_ReturnsCorrectResult()
         {
-            List<int> numbers = new List<int>() { 1, 2, 0 };
+            List<double> numbers = new List<double>() { 1, 2, 0 };
 
-            int result = Calculator.Add(numbers);
+            double result = Calculator.Add(numbers);
 
             Assert.AreEqual(3, result);
         }
@@ -40,9 +40,9 @@ namespace challenge_calculator.UnitTests
         [TestMethod]
         public void Add_12Numbers_ReturnsCorrectResult()
         {
-            List<int> numbers = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 };
+            List<double> numbers = new List<double>() { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 };
 
-            int result = Calculator.Add(numbers);
+            double result = Calculator.Add(numbers);
 
             Assert.AreEqual(78, result);
         }
@@ -52,17 +52,17 @@ namespace challenge_calculator.UnitTests
         public void Add_NegativeNumbers_CreatesException()
         {
             Calculator.allowNegativeNumbers = false;
-            List<int> numbers = new List<int>() { 1, 2, 3, -4, -5 };
+            List<double> numbers = new List<double>() { 1, 2, 3, -4, -5 };
 
-            int result = Calculator.Add(numbers);
+            double result = Calculator.Add(numbers);
         }
 
         [TestMethod]
         public void Add_HigherThanUpperLimitNumber_NumberIsIgnored()
         {
-            List<int> numbers = new List<int>() { 2, Calculator.upperBound+1, 6 };
+            List<double> numbers = new List<double>() { 2, Calculator.upperBound+1, 6 };
 
-            int result = Calculator.Add(numbers);
+            double result = Calculator.Add(numbers);
 
             Assert.AreEqual(8, result);
         }

@@ -11,9 +11,9 @@ namespace challenge_calculator
         public static bool allowNegativeNumbers = false;
         public static int upperBound = 1000;
 
-        static public int Add(List<int> numbers)
+        static public double Add(List<double> numbers)
         {
-            int answer = 0;
+            double answer = 0;
             string negativeNumbers = "";
 
             foreach (var number in numbers)
